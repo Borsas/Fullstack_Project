@@ -1,6 +1,8 @@
 import React, {useState} from "react"
 import { connect } from "react-redux"
-import { userLogin } from "../../reducers/loginReducer"
+import { Redirect } from "react-router-dom"
+
+import { userLogin } from "../reducers/loginReducer"
 
 const Login = (props) => {
     const [username, setUsername] = useState("")
@@ -11,6 +13,10 @@ const Login = (props) => {
         props.userLogin(username)
         setUsername("")
         setPassword("")
+    }
+
+    if (props.user) {
+        return <Redirect to="/"/>
     }
 
     return (
