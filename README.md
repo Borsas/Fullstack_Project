@@ -5,6 +5,7 @@ I'm designing this as i go, which is not really good idea, but i just want to ge
 
 ## TODO
 Pretty much everything.
+Create database using sequelize and PSQL
 
 ### Frontend
 - [ ] Login
