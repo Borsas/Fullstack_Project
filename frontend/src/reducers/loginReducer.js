@@ -23,7 +23,7 @@ const reducer = (state = mockData, action) => {
         case "GET_USER":
             return state
         case "USER_LOGIN":
-            return action.data
+            return {username: action.data, name:"Mr. Stockname"}
         default:
             return state
     }

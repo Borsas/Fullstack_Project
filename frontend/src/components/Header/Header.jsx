@@ -9,7 +9,7 @@ const Header = (props) => {
             <h1>Twitter clone for Fullstack</h1>
 
             <div>
-                {props.user ? props.user : <Login/>}
+                {props.user ? <div> Logged in as <b>{props.user.username}</b> </div> : <Login/>}
             </div>
         </div>
         

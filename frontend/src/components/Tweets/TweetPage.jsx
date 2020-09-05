@@ -8,10 +8,15 @@ const TweetPage = (props) => {
 
     return (
         <div>
-            <NewTweet/>
+            {props.user ? <NewTweet/> : null}
             <div>
                 {props.tweets.map(tweet => {
-                    return <Tweet key={tweet.user} user={tweet.user} content={tweet.content} date={tweet.date} />
+                    return <Tweet key={tweet.user}
+                    user={tweet.user}
+                    name={tweet.name}
+                    likes={tweet.likes}
+                    content={tweet.content}
+                    date={tweet.date} />
                 })}
             </div>
         </div>
@@ -20,7 +25,8 @@ const TweetPage = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        tweets: state.tweets
+        tweets: state.tweets,
+        user: state.user
     }
   }
 

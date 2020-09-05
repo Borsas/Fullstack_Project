@@ -19,13 +19,17 @@ export const newTweet = (data) => {
 const mockData = [
     {
         "user": "Borsas",
+        "name": "Borsas mcPig",
         "content": "This is really epic!",
-        "date": "2020-09-05"
+        "date": "2020-09-05",
+        "likes": 0
     },
     {
         "user": "Possu",
+        "name": "Possu possunen",
         "content": "My first tweet!!",
-        "date": "2018-02-01"
+        "date": "2018-02-01",
+        "likes": 0
     },
 ]
 

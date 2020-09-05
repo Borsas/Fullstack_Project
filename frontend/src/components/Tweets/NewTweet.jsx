@@ -4,16 +4,12 @@ import { newTweet } from "../../reducers/tweetsReducer"
 
 
 const NewTweet = (props) => {
-    const [user, setuser] = useState("")
     const [content, setContent] = useState("")
-
 
     const handleNewTweet = (e) => {
         e.preventDefault()
-        props.newTweet({user, content})
+        props.newTweet({user: props.user.username, name: props.user.name, content, likes: 0})
         setContent("")
-        setuser("")
-
     }
     
     return (
@@ -23,9 +19,6 @@ const NewTweet = (props) => {
             </h4>
 
             <form onSubmit={handleNewTweet}>
-                <div>
-                    Username: <input value={user} onChange={({target}) => setuser(target.value)} />
-                </div>
                 <div>
                     Tweet: <input value={content} onChange={({target}) => setContent(target.value)} />
                 </div>
@@ -37,7 +30,8 @@ const NewTweet = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        tweets: state.tweets
+        tweets: state.tweets,
+        user: state.user
     }
   }
 

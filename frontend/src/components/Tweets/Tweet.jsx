@@ -1,13 +1,16 @@
 import React from "react"
 
-const Tweet = ({user, content, date}) => {
+const Tweet = ({user, name, likes, content, date}) => {
     return (
         <div>
             <div>
-                {user} @{user}
+                <b>{name}</b> @{user}
             </div>
             <div>
                 {content} at {date}
+            </div>
+            <div>
+                <i>Likes {likes}</i>
             </div>
         </div>
 
