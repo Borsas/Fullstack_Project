@@ -7,7 +7,6 @@ export const getTweets = () => {
 }
 
 export const newTweet = (data) => {
-    console.log(data)
     return async dispatch => {
         dispatch({
             type: "NEW_TWEET",
@@ -16,7 +15,7 @@ export const newTweet = (data) => {
     }
 }
 
-
+// Replace with a connection to DB
 const mockData = [
     {
         "user": "Borsas",
