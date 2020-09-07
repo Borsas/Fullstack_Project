@@ -23,14 +23,14 @@ loginRouter.post("/", async (req, res) => {
         })
     }
 
-    const tokenToBeChecked = {
+    const userToken = {
         username: user.username,
         id: user.id
     }
     console.log(process.env.JWT_SECRET_HASH)
 
-    const token = jwt.sign(tokenToBeChecked, process.env.JWT_SECRET_HASH)
-    
+    const token = jwt.sign(userToken, process.env.JWT_SECRET_HASH)
+
     res.status(200).send({
         token,
         username: user.username,
