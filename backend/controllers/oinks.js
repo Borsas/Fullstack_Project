@@ -64,31 +64,6 @@ oinkRouter.post("/like/:id", async (req, res) => {
     res.status(200)
 })
 
-// Get the specific users Oinks
-oinkRouter.get("/:id", async (req, res) => {
-    const userId = req.params.id 
-
-    const user = await User.findByPk(userId)
-
-    if (!user) {
-        res.status(401).json({
-            error: "Invalid user id"
-        })
-    }
-
-    const oinks = await Oink.findAll({
-        attributes: [
-            "username",
-            "content",
-            "date",
-            "likes"
-        ],
-        where: {
-            userId: userId
-        }
-    })
-    res.json(oinks)
-})
 
 
 
