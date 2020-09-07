@@ -1,16 +1,26 @@
-export const getTweets = () => {
+import oinkService from "../services/oinks"
+
+export const newTweet = (object) => {
     return async dispatch => {
-        dispatch({
-            type: "GET_TWEETS"
-        })
+        try {
+            const data = await oinkService.newOink(object)
+            console.log(object)
+            dispatch({
+                type: "NEW_TWEET",
+                object
+            })
+        } catch(err) {
+            console.log(err)
+        }
     }
 }
 
-export const newTweet = (data) => {
+export const getTweets = () => {
     return async dispatch => {
+        const oinks = await oinkService.getAll()
         dispatch({
-            type: "NEW_TWEET",
-            data
+            type: "SET_OINKS",
+            data: oinks
         })
     }
 }
@@ -33,13 +43,14 @@ const mockData = [
     },
 ]
 
-const reducer = (state = mockData, action) => {
+const reducer = (state = [], action) => {
     switch(action.type){
         case "GET_TWEETS":
             return state
+        case "SET_OINKS":
+            return action.data
         case "NEW_TWEET":
-            const newTweet = {...action.data, date: "2020-09-05"}
-            return [...state, newTweet]
+            return [...state, action.data]
         default:
             return state
     }

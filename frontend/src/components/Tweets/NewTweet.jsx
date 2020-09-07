@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import { connect } from "react-redux"
-import { newTweet } from "../../reducers/tweetsReducer"
+import { newTweet } from "../../reducers/oinksReducer"
 
 
 const NewTweet = (props) => {

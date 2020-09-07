@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from "redux"
-import tweetsReducer from "./reducers/tweetsReducer"
+import tweetsReducer from "./reducers/oinksReducer"
 import loginReducer from "./reducers/loginReducer"
 import thunk from "redux-thunk"
 

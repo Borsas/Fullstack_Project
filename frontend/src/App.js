@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Switch, Route } from "react-router-dom"
+import { connect } from "react-redux"
 
 import Header from "./components/Header/Header"
 import TweetPage from "./components/Tweets/TweetPage"
 import Login from "./components/Login"
 
+import { getTweets} from "./reducers/oinksReducer"
 
-function App() {
+
+function App(props) {
+
+    useEffect(() => {
+        props.getTweets()
+        console.log("Loaded oinks")
+    }, [])
+
     return (
         <Switch>
             <Route path="/login">
@@ -22,4 +31,14 @@ function App() {
     );
 }
 
-export default App;
+
+const mapDispatchToProps = {
+    getTweets
+}
+
+const ConnectedApp = connect(
+    null,
+    mapDispatchToProps
+)(App)
+
+export default ConnectedApp
