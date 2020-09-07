@@ -43,6 +43,55 @@ oinkRouter.post("/", async (req, res) => {
 
 })
 
+// Like a Oink
+oinkRouter.post("/like/:id", async (req, res) => {
+    const userToken = jwt.verify(req.token, process.env.JWT_SECRET_HASH)
+    const OinkId = req.params.id 
+
+    if (!(userToken)) {
+        return res.status(401).json({
+            error: "Invalid login, missing token."
+        })
+    }
+
+    const oink = await Oink.findByPk(OinkId)
+    if (!oink){
+        return res.status(401).json({
+            error: "Invalid Oink id"
+        })
+    }
+    await oink.increment("likes", {by: 1})
+    res.status(200)
+})
+
+// Get the specific users Oinks
+oinkRouter.get("/:id", async (req, res) => {
+    const userId = req.params.id 
+
+    const user = await User.findByPk(userId)
+
+    if (!user) {
+        res.status(401).json({
+            error: "Invalid user id"
+        })
+    }
+
+    const oinks = await Oink.findAll({
+        attributes: [
+            "username",
+            "content",
+            "date",
+            "likes"
+        ],
+        where: {
+            userId: userId
+        }
+    })
+    res.json(oinks)
+})
+
+
+
 oinkRouter.get("/", async (req, res) => {
     const oinks = await Oink.findAll({
         attributes: ["username", "content", "likes", "date"]
