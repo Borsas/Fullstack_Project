@@ -1,0 +1,7 @@
+POST http://localhost:3001/api/oinks
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvcnNhcyIsImlkIjoiZGNjOWVlNTYtMWYwMy00YTVkLWI3ZGItMGYzNmQxMjlhOTE3IiwiaWF0IjoxNTk5NTAzNTgyfQ.FernRUqzoHqAZUwlBqHAGytPv4q847wCQ7DnQEnlOAU
+
+{
+    "content": "Omg this is starting to work!"
+}

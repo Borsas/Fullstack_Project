@@ -11,6 +11,8 @@ const getAuthToken = (req, res, next) => {
 const handleErrors = (error, req, resp, next) => {
     if (error.name === "JsonWebTokenError"){
         return resp.status(401).send({ error: "Invalid or missing token" })
+    } else if (error.name === "SequelizeDatabaseError") {
+        return resp.status(401).send({error: "Invalid query"})
     }
     next(error)
 }
