@@ -1,9 +1,15 @@
 const express = require("express")
 const cors = require("cors")
+require("dotenv").config()
 
 // Start
 const { connectToDB } = require("./database")
-connectToDB()
+
+try {
+    connectToDB()
+} catch (err) {
+    console.log(err)
+}
 const app = express()
 
 const loginRouter = require("./controllers/login")

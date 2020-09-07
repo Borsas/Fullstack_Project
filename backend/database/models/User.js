@@ -1,11 +1,19 @@
+const uuid = require("uuid").v4()
 const { DataTypes } = require('sequelize');
 const { sequelize } = require("../index")
-
+const Oink = require("./Oink")
 
 const User = sequelize.define("user", {
+        id: {
+            allowNull: false,
+            primaryKey: true,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4
+        },
         username: {
             allowNull: false,
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            unique: true
         },
         name: {
             allowNull: false,
@@ -16,5 +24,6 @@ const User = sequelize.define("user", {
             type: DataTypes.STRING
         }
     })
+User.hasMany(Oink)
 
 module.exports = User

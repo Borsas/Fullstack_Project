@@ -10,7 +10,7 @@ const connectToDB = async () => {
         try {
             await sequelize.authenticate()
             console.log("Succesfully connected to database")
-            sequelize.sync({force: true})
+            sequelize.sync()
             break
         } catch (error) {
             retries = retries - 1
