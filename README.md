@@ -5,7 +5,11 @@ I'm designing this as i go, which is not really good idea, but i just want to ge
 
 ## TODO
 Pretty much everything.
+
 Create database using sequelize and PSQL
+Need to start planning more what i need to do, so i don't have to refactor so much of this.
+Also make sure database is stable.
+
 
 ### Frontend
 - [ ] Login
@@ -15,10 +19,10 @@ Create database using sequelize and PSQL
 - [ ] Routes (React-router)
 
 ### Backend
-- [*] Adding new Oinks
+- [x] Adding new Oinks
 - [ ] Getting Oinks
-- [*] Logging in
-- [*] Register
+- [x] Logging in
+- [x] Register
 - [ ] Editing profile
 - [ ] Following users
 - [ ] Database
