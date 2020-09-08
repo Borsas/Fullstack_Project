@@ -45,7 +45,7 @@ loginRouter.post("/register", async (req, res) => {
             error: "Invalid name, username or password."
         })
     }
-    const exists = User.findOne({
+    const exists = await User.findOne({
         where: {
             username: body.username
         }
