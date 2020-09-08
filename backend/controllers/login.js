@@ -45,6 +45,17 @@ loginRouter.post("/register", async (req, res) => {
             error: "Invalid name, username or password."
         })
     }
+    const exists = User.findOne({
+        where: {
+            username: body.username
+        }
+    })
+    
+    if (exists) {
+        return res.status(400).json({
+            error: "Username already taken"
+        })
+    }
 
     const salt = 15
     const passwordHash = await bcrypt.hash(body.password, salt)
