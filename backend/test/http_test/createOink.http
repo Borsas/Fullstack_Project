@@ -1,0 +1,7 @@
+POST http://localhost:3001/api/oinks
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkthbGxlX2thbGExIiwiaWQiOiI4MTg3ZGM3Yy00NzQ3LTRjYTUtYjEyNy05YzI4Mjg4OTc4OTgiLCJpYXQiOjE2MDAwOTY0MzN9.Wnq-J5XvheP7gZrHcsvoxP6pXiy5iTQ7wsw7Nt_I3MI
+
+{
+    "content": "God damn i love the memes :D"
+}
