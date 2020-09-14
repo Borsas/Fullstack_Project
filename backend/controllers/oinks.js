@@ -22,7 +22,7 @@ oinkRouter.post("/", async (req, res) => {
     }
 
     const user = await User.findByPk(userToken.id)
-    const date = new Date().toISOString()
+    const date = Math.round((new Date()).getTime() / 1000)
 
     const newOink = await Oink.create({
         username: user.username,
@@ -100,7 +100,7 @@ oinkRouter.post("/like/:id", async (req, res) => {
 
 oinkRouter.get("/", async (req, res) => {
     const oinks = await Oink.findAll({
-        attributes: ["username", "content", "likes", "date"]
+        attributes: ["id", "username", "content", "likes", "date"]
     })
     res.json(oinks)
 })

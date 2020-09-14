@@ -17,6 +17,7 @@ userRouter.get("/:id", async (req, res) => {
 
     const oinks = await Oink.findAll({
         attributes: [
+            "id",
             "username",
             "content",
             "date",
@@ -27,6 +28,18 @@ userRouter.get("/:id", async (req, res) => {
         }
     })
     res.json(oinks)
+})
+
+// Get all users and their Oinks
+userRouter.get("/", async (req, res) => {
+    const users = await User.findAll({
+        attributes: ["id", "username", "name"],
+        include: [{
+            model: Oink,
+            attributes: ["id", "content", "date"]
+        }]
+    })
+    res.json(users)
 })
 
 module.exports = userRouter

@@ -23,7 +23,7 @@ const Oink = sequelize.define("oink", {
         },
         date: {
             allowNull: false,
-            type: DataTypes.STRING
+            type: DataTypes.INTEGER
         }
     })
 
