@@ -8,4 +8,5 @@
 | 7.9.20| 3 | Fought with PSQL and Sequelize, PSQL is running in docker and its pretty broken, so much to fix, ugh|
 | 7.9.20| 1.5 | Added login/register, added ability to create Oinks, misc stuff|
 | 7.9.20| 1 | Added ability to like Oinks, some refactoring |
-| Total   | 9,5  | | 
+| 14.9.20| 1 | Users are only able to like a oink once. |
+| Total   | 10,5  | | 
