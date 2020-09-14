@@ -1,7 +1,7 @@
 const uuid = require("uuid").v4()
 const { DataTypes } = require('sequelize');
 const { sequelize } = require("../index")
-const Oink = require("./Oink")
+const Oink = require("./Oink");
 
 const User = sequelize.define("user", {
         id: {
