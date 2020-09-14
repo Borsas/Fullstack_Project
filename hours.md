@@ -9,4 +9,5 @@
 | 7.9.20| 1.5 | Added login/register, added ability to create Oinks, misc stuff|
 | 7.9.20| 1 | Added ability to like Oinks, some refactoring |
 | 14.9.20| 1 | Users are only able to like a oink once. |
-| Total   | 10,5  | | 
+| 14.9.20| 2 | Users are able to follow users.|
+| Total   | 12,5  | | 
