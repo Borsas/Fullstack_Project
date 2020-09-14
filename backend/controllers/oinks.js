@@ -69,7 +69,7 @@ oinkRouter.post("/like/:id", async (req, res) => {
             error: "Invalid Oink id"
         })
     }
-    console.log(loggedInUser.id)
+    
     const findIfLiked = await LikedOinks.findOne({
         where: {
             userId: loggedInUser.id,

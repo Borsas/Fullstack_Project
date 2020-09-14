@@ -1,4 +1,3 @@
-const uuid = require("uuid").v4()
 const { DataTypes } = require('sequelize');
 const { sequelize } = require("../index")
 const Oink = require("./Oink");
@@ -25,5 +24,8 @@ const User = sequelize.define("user", {
         }
     })
 User.hasMany(Oink)
+
+User.belongsToMany(User, {through: "follow", as: "follower", foreignKey: "follower_id"})
+User.belongsToMany(User, {through: "follow", as: "following", foreignKey: "following_id"})
 
 module.exports = User
