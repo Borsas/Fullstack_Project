@@ -33,12 +33,13 @@ userRouter.get("/:id", async (req, res) => {
 })
 
 // Get all users and their information
+// This might be deleted and split in to something more user specific
 userRouter.get("/", async (req, res) => {
     const users = await User.findAll({
         attributes: ["id", "username", "name"],
         include: [{
             model: Oink,
-            attributes: ["id", "content", "date"]
+            attributes: ["id", "content", "date", "likes"]
         }, {
             model: User,
             as: "follower",
@@ -74,6 +75,12 @@ userRouter.post("/follow/:id", async (req, res) => {
         })
     } 
     const user = await User.findOne({where: {username: userToken.username}})
+
+    if (user.id === userToFollowId) {
+        return res.status(401).json({
+            error: "You can't follow yourself"
+        })
+    }
 
     const isUserAlreadyFollowing = await Follower.findOne({
         where: {
