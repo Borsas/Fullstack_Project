@@ -3,20 +3,15 @@ const cors = require("cors")
 require("express-async-errors")
 require("dotenv").config()
 
-// Start
 const { connectToDB } = require("./database")
-
-try {
-    connectToDB()
-} catch (err) {
-    console.log(err)
-}
-const app = express()
-
 const loginRouter = require("./controllers/login")
 const oinkRouter = require("./controllers/oinks")
 const userRouter = require("./controllers/user")
 const middlware = require("./utils/middleware")
+
+// Try to connect to the Database, if it fails the app will stop
+connectToDB()
+const app = express()
 
 app.use(cors())
 app.use(express.json())
