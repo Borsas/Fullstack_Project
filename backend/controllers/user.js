@@ -42,7 +42,10 @@ userRouter.get("/", async (req, res) => {
         }, {
             model: User,
             as: "follower",
-            through: {attributes: []}
+            through: {
+                attributes: []
+            },
+            attributes: ["id", "username", "name"]
         }]
     })
     res.json(users)
