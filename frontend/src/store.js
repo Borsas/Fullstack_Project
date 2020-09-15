@@ -1,10 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux"
-import tweetsReducer from "./reducers/oinksReducer"
+import oinksReducer from "./reducers/oinksReducer"
 import loginReducer from "./reducers/loginReducer"
 import thunk from "redux-thunk"
 
 const reducer = combineReducers({
-    tweets: tweetsReducer,
+    oinks: oinksReducer,
     user: loginReducer
 })
 

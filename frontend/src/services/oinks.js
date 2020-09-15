@@ -24,7 +24,7 @@ const likeOink = async (id) => {
     const config = {
         headers: { Authorization: loginToken }
     }
-    const res = await axios.post(`${baseUrl}/like/${id}`, config)
+    const res = await axios.post(`${baseUrl}/like/${id}`,null, config)
     return res.data
 }
 

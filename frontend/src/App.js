@@ -3,17 +3,17 @@ import { Switch, Route } from "react-router-dom"
 import { connect } from "react-redux"
 
 import Header from "./components/Header/Header"
-import TweetPage from "./components/Tweets/TweetPage"
+import TweetPage from "./components/Oinks/OinkPage"
 import Login from "./components/Login"
 
-import { getTweets} from "./reducers/oinksReducer"
+import { getOinks} from "./reducers/oinksReducer"
 import { setUser } from "./reducers/loginReducer"
 
 
 function App(props) {
 
     useEffect(() => {
-        props.getTweets()
+        props.getOinks()
         console.log("Loaded oinks")
     }, [])
 
@@ -21,6 +21,7 @@ function App(props) {
         const user = localStorage.getItem("loggedInUser")
         if (user) {
             props.setUser(JSON.parse(user))
+            console.log("Set user")
         }
 
     }, [])
@@ -42,7 +43,7 @@ function App(props) {
 
 
 const mapDispatchToProps = {
-    getTweets,
+    getOinks,
     setUser
 }
 
