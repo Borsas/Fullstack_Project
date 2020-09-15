@@ -12,20 +12,23 @@ Also make sure database is stable.
 
 
 ### Frontend
-- [ ] Login
-- [ ] Tweets
+- [x] Login
+- [x] Oinks
 - [ ] Main page
 - [ ] User profiles
-- [ ] Routes (React-router)
+- [x] Routes (React-router)
+- [ ] Ability to follow users
+- [ ] Make the page pretty (lmao)
 
 ### Backend
 - [x] Adding new Oinks
-- [ ] Getting Oinks
+- [x] Getting Oinks
 - [x] Logging in
 - [x] Register
 - [ ] Editing profile
-- [ ] Following users
-- [ ] Database
+- [x] Following users
+- [x] Database
+- [ ] Show oinks from people only you follow
 
 ### MISC 
 - [x] Name for project // *Oinker*
