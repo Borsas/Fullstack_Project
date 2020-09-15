@@ -10,4 +10,5 @@
 | 7.9.20| 1 | Added ability to like Oinks, some refactoring |
 | 14.9.20| 1 | Users are only able to like a oink once. |
 | 14.9.20| 2 | Users are able to follow users.|
+| 15.9.20| 2 | Started working on the frontend, added login & likes and some misc backend stuff|
 | Total   | 12,5  | | 
