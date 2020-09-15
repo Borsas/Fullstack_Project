@@ -92,15 +92,14 @@ oinkRouter.post("/like/:id", async (req, res) => {
             }
         })
     }
-    res.status(200)
+    return res.json({id: oink.id, likes: oink.likes})
 })
-
-
 
 
 oinkRouter.get("/", async (req, res) => {
     const oinks = await Oink.findAll({
-        attributes: ["id", "username", "content", "likes", "date"]
+        attributes: ["id","username", "content", "likes", "date"],
+        
     })
     res.json(oinks)
 })

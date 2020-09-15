@@ -101,7 +101,7 @@ userRouter.post("/follow/:id", async (req, res) => {
             follower_id: userToFollowId
         })
     }
-    res.send(200)
+    res.sendStatus(200)
 })
 
 module.exports = userRouter
