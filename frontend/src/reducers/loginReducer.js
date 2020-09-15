@@ -1,3 +1,5 @@
+import oinkService from "../services/oinks"
+
 export const getUser = () => {
     return async dispatch => {
         dispatch({
@@ -6,24 +8,25 @@ export const getUser = () => {
     }
 }
 
-export const userLogin = (data) => {
+export const setUser = (data) => {
     return async dispatch => {
+        if (data !== null){
+            await oinkService.setLoginToken(data.token)
+        } 
         dispatch({
-            type: "USER_LOGIN",
+            type: "SET_USER",
             data
         })
     }
 }
 
-// Replace with a connection to DB
-const mockData = null
 
-const reducer = (state = mockData, action) => {
+const reducer = (state = null, action) => {
     switch(action.type){
         case "GET_USER":
             return state
-        case "USER_LOGIN":
-            return {username: action.data, name:"Mr. Stockname"}
+        case "SET_USER":
+            return action.data
         default:
             return state
     }

@@ -2,17 +2,31 @@ import React, {useState} from "react"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 
-import { userLogin } from "../reducers/loginReducer"
+import { setUser } from "../reducers/loginReducer"
+import loginService from "../services/login"
+import oinkService from "../services/oinks"
 
 const Login = (props) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
-        props.userLogin(username)
-        setUsername("")
-        setPassword("")
+        try {
+            const loggedUser = await loginService.login({
+                "username": username,
+                "password": password
+            })
+            props.setUser(loggedUser)
+            oinkService.setLoginToken(loggedUser.token)
+            window.localStorage.setItem(
+                "loggedInUser", JSON.stringify(loggedUser)
+            )
+            setUsername("")
+            setPassword("")
+        }catch (e) {
+            console.log("Error loggin in", e)
+        }
     }
 
     if (props.user) {
@@ -47,7 +61,7 @@ const states = (state) => {
 }
 
 const dispatch = {
-    userLogin
+    setUser
 }
 
 const LoginConnected = connect(

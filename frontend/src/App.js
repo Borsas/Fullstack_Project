@@ -7,6 +7,7 @@ import TweetPage from "./components/Tweets/TweetPage"
 import Login from "./components/Login"
 
 import { getTweets} from "./reducers/oinksReducer"
+import { setUser } from "./reducers/loginReducer"
 
 
 function App(props) {
@@ -14,6 +15,14 @@ function App(props) {
     useEffect(() => {
         props.getTweets()
         console.log("Loaded oinks")
+    }, [])
+
+    useEffect(() => {
+        const user = localStorage.getItem("loggedInUser")
+        if (user) {
+            props.setUser(JSON.parse(user))
+        }
+
     }, [])
 
     return (
@@ -33,7 +42,8 @@ function App(props) {
 
 
 const mapDispatchToProps = {
-    getTweets
+    getTweets,
+    setUser
 }
 
 const ConnectedApp = connect(
