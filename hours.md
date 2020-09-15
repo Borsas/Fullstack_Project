@@ -11,5 +11,5 @@
 | 14.9.20| 1 | Users are only able to like a oink once. |
 | | 2 | Users are able to follow users.|
 | 15.9.20| 2 | Started working on the frontend, added login & likes and some misc backend stuff|
-| 16.9.20| 0.5 | Added ability to register and some misc thinking about the whole project|
-| Total   | 15  | | 
+| 16.9.20| 1 | Added ability to register and some misc thinking about the whole project|
+| Total   | 15.5  | | 
