@@ -20,7 +20,12 @@ const Header = (props) => {
                     Logged in as <b>{props.user.username}</b>
                     <button onClick={logout}>Logout</button>
                 </div>
-                : <Link to="/login">Login</Link>}
+                : 
+                <div> 
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
+                </div>
+                }
             </div>
         </div>
         

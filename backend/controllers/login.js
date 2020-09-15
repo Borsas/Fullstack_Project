@@ -27,7 +27,6 @@ loginRouter.post("/", async (req, res) => {
         username: user.username,
         id: user.id
     }
-    console.log(process.env.JWT_SECRET_HASH)
 
     const token = jwt.sign(userToken, process.env.JWT_SECRET_HASH)
 
@@ -60,15 +59,23 @@ loginRouter.post("/register", async (req, res) => {
     const salt = 15
     const passwordHash = await bcrypt.hash(body.password, salt)
 
-    const user = User.build({
+    const user = await User.create({
         name: body.name,
         username: body.username,
         password: passwordHash
     })
-    await user.save()
-    return res.json(user)
 
+    const userToken = {
+        username: user.username,
+        id: user.id
+    }
+    const token = jwt.sign(userToken, process.env.JWT_SECRET_HASH)
 
+    res.status(200).send({
+        token,
+        username: user.username,
+        name: user.name
+    })
 })
 
 

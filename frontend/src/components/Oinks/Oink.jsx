@@ -20,7 +20,7 @@ const Oink = (props) => {
                 {props.content} at {parsedDate}
             </div>
             <div>
-                <i>Likes {props.likes}</i> <button onClick={(e) => {handleLike(e)}}>👍</button>
+                <i>Likes {props.likes}</i> <button onClick={(e) => {handleLike(e)}}><span role="img">👍</span></button>
             </div>
         </div>
 

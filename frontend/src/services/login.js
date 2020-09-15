@@ -7,6 +7,12 @@ const login = async (user) => {
     return res.data
 }
 
+const register = async (user) => {
+    const res = await axios.post(`${baseUrl}/register`, user)
+    return res.data
+}
+
 export default {
-    login
+    login,
+    register
 }
