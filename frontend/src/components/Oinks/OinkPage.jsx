@@ -15,8 +15,8 @@ const OinkPage = (props) => {
                 }).map(oink => {
                     return <Oink key={oink.id}
                         id={oink.id}
-                        user={oink.username}
-                        name={oink.username}
+                        user={oink.user.username}
+                        name={oink.user.name}
                         likes={oink.likes}
                         content={oink.content}
                         date={oink.date} />

@@ -8,7 +8,7 @@ const NewOink = (props) => {
 
     const handleNewOink = (e) => {
         e.preventDefault()
-        props.newOink({user: props.user.username, name: props.user.name, content, likes: 0})
+        props.newOink({content, likes: 0})
         setContent("")
     }
     

@@ -25,7 +25,6 @@ oinkRouter.post("/", async (req, res) => {
     const date = Math.round((new Date()).getTime() / 1000)
 
     const newOink = await Oink.create({
-        username: user.username,
         content: body.content,
         date,
         likes: 0,
@@ -36,10 +35,14 @@ oinkRouter.post("/", async (req, res) => {
     // Find a better way to do this lol
     return res.json({
         id: newOink.id,
-        username: newOink.username,
         content: newOink.content,
         date: newOink.date,
         likes: newOink.likes,
+        user: {
+            username: user.username,
+            name: user.name,
+            id: user.id
+        }
     })
 
 })
@@ -98,8 +101,11 @@ oinkRouter.post("/like/:id", async (req, res) => {
 
 oinkRouter.get("/", async (req, res) => {
     const oinks = await Oink.findAll({
-        attributes: ["id","username", "content", "likes", "date"],
-        
+        attributes: ["id", "content", "likes", "date"],
+        include: {
+            model: User,
+            attributes:["name", "username", "id"]
+        }
     })
     res.json(oinks)
 })

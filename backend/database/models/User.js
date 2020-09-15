@@ -24,6 +24,7 @@ const User = sequelize.define("user", {
         }
     })
 User.hasMany(Oink)
+Oink.belongsTo(User)
 
 
 module.exports = User
