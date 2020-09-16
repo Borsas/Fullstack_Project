@@ -6,17 +6,17 @@ const Oink = require("../database/models/Oink")
 const Follower = require("../database/models/Follower")
 
 
-// Get users all info
-userRouter.get("/:id", async (req, res) => {
-    const userId = req.params.id
-    const users = await User.findOne({
-        where: {
-            id: userId
-        },
+// Get all users
+userRouter.get("/", async (req, res) => {
+    const user = await User.findAll({
         attributes: ["id", "username", "name"],
         include: [{
             model: Oink,
-            attributes: ["id", "content", "date", "likes"]
+            attributes: ["id", "content", "date", "likes"],
+            include: {
+                model: User,
+                attributes: ["username", "name", "id"]
+            }
         }, {
             model: User,
             as: "follower",
@@ -26,7 +26,7 @@ userRouter.get("/:id", async (req, res) => {
             attributes: ["id", "username", "name"]
         }]
     })
-    res.json(users)
+    res.json(user)
 })
 
 // Follow another user
@@ -78,7 +78,10 @@ userRouter.post("/follow/:id", async (req, res) => {
             follower_id: userToFollowId
         })
     }
-    res.sendStatus(200)
+    res.status(200).json({
+        following_id: user.id,
+        follower_id: userToFollowId
+    })
 })
 
 module.exports = userRouter
