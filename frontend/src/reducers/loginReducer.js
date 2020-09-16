@@ -1,6 +1,6 @@
 import oinkService from "../services/oinks"
 
-export const getUser = () => {
+export const getLoginUser = () => {
     return async dispatch => {
         dispatch({
             type: "GET_USER"
@@ -8,7 +8,7 @@ export const getUser = () => {
     }
 }
 
-export const setUser = (data) => {
+export const setLoginUser = (data) => {
     return async dispatch => {
         if (data !== null){
             await oinkService.setLoginToken(data.token)

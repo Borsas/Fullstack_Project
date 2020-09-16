@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 
-import { setUser } from "../reducers/loginReducer"
+import { setLoginUser } from "../reducers/loginReducer"
 import loginService from "../services/login"
 import oinkService from "../services/oinks"
 
@@ -17,7 +17,7 @@ const Login = (props) => {
                 "username": username,
                 "password": password
             })
-            props.setUser(loggedUser)
+            props.setLoginUser(loggedUser)
             oinkService.setLoginToken(loggedUser.token)
             window.localStorage.setItem(
                 "loggedInUser", JSON.stringify(loggedUser)
@@ -29,7 +29,7 @@ const Login = (props) => {
         }
     }
 
-    if (props.user) {
+    if (props.login) {
         return <Redirect to="/"/>
     }
 
@@ -56,12 +56,12 @@ const Login = (props) => {
 
 const states = (state) => {
     return {
-        user: state.user
+        login: state.login
     }
 }
 
 const dispatch = {
-    setUser
+    setLoginUser
 }
 
 const LoginConnected = connect(

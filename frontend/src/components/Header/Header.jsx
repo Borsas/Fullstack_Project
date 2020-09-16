@@ -1,23 +1,25 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
-import { setUser } from "../../reducers/loginReducer"
+import { setLoginUser } from "../../reducers/loginReducer"
+import OinkService from "../../services/oinks"
 
 const Header = (props) => {
 
     const logout = () => {
-        props.setUser(null)
+        props.setLoginUser(null)
         window.localStorage.removeItem("loggedInUser")
+        OinkService.setLoginToken(null)
     }
 
     return (
-        <div>
-            <h1>Oinker</h1>
+        <div style={{position: "sticky", top: "0"}}>
+            <Link to="/"> <h1>Oinker</h1> </Link>
 
             <div>
-                {props.user ? 
+                {props.login ? 
                 <div> 
-                    Logged in as <b>{props.user.username}</b>
+                    Logged in as <b>{props.login.username}</b>
                     <button onClick={logout}>Logout</button>
                 </div>
                 : 
@@ -35,12 +37,12 @@ const Header = (props) => {
 
 const props = (state) => {
     return {
-        user: state.user
+        login: state.login
     }
 }
 
 const dispatch = {
-    setUser
+    setLoginUser
 }
 
 const HeaderConnected = connect(

@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 
-import Oink from "./Oink"
+import Oinks from "./Oinks"
 import NewOink from "./NewOink"
 
 const OinkPage = (props) => {
@@ -9,19 +9,7 @@ const OinkPage = (props) => {
     return (
         <div>
             {props.user ? <NewOink/> : null}
-            <div>
-                {props.oinks.sort((a, b) => {
-                    return b.date - a.date
-                }).map(oink => {
-                    return <Oink key={oink.id}
-                        id={oink.id}
-                        user={oink.user.username}
-                        name={oink.user.name}
-                        likes={oink.likes}
-                        content={oink.content}
-                        date={oink.date} />
-                })}
-            </div>
+            <Oinks oinks={props.oinks}/>
         </div>
     )
 }

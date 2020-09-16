@@ -5,37 +5,14 @@ const User = require("../database/models/User")
 const Oink = require("../database/models/Oink")
 const Follower = require("../database/models/Follower")
 
-// Get the specific users Oinks
+
+// Get users all info
 userRouter.get("/:id", async (req, res) => {
-    const userId = req.params.id 
-
-    const user = await User.findByPk(userId)
-
-    if (!user) {
-        res.status(401).json({
-            error: "Invalid user id"
-        })
-    }
-
-    const oinks = await Oink.findAll({
-        attributes: [
-            "id",
-            "username",
-            "content",
-            "date",
-            "likes"
-        ],
+    const userId = req.params.id
+    const users = await User.findOne({
         where: {
-            userId: userId
-        }
-    })
-    res.json(oinks)
-})
-
-// Get all users and their information
-// This might be deleted and split in to something more user specific
-userRouter.get("/", async (req, res) => {
-    const users = await User.findAll({
+            id: userId
+        },
         attributes: ["id", "username", "name"],
         include: [{
             model: Oink,
