@@ -35,7 +35,7 @@ const Oink = (props) => {
             </div>
             <div>
                 <i>Likes {props.likes}</i>
-                {props.login ?
+                {props.login ? 
                 <button onClick={(e) => {handleLike(e)}}><span role="img">👍</span></button> : null}   
             </div>
         </div>

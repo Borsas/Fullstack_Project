@@ -2,6 +2,8 @@ import React from "react"
 import { connect } from "react-redux"
 import Oinks from "../Oinks/Oinks"
 
+import { followUser } from "../../reducers/userReducer"
+
 const Profile = (props) => {
     const profile = props.profile
 
@@ -17,7 +19,7 @@ const Profile = (props) => {
     const handleFollow = (e) => {
         e.preventDefault()
         if (props.login){
-            
+            console.log(profile.id)
         }
     }
 
@@ -47,7 +49,7 @@ const Profile = (props) => {
 }
 
 const dispatch = {
-    
+    followUser
 }
 
 const props = (state) => {

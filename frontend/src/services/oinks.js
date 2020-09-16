@@ -7,6 +7,10 @@ const setLoginToken = (newToken) => {
     loginToken = `bearer ${newToken}`
 }
 
+const getLoginToken = () => {
+    return loginToken
+}
+
 const getAll = async () => {
     const res = await axios.get(baseUrl)
     return res.data
@@ -29,6 +33,7 @@ const likeOink = async (id) => {
 }
 
 export default {
+    getLoginToken,
     setLoginToken,
     getAll,
     newOink,

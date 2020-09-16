@@ -16,18 +16,18 @@ import { getUser } from "./reducers/userReducer"
 function App(props) {
 
     useEffect(() => {
+        const user = localStorage.getItem("loggedInUser")
+        if (user) {
+            props.setLoginUser(JSON.parse(user))
+        }
+    }, [])
+
+    useEffect(() => {
         props.getOinks()
         console.log("Loaded oinks")
         props.getUser()
     }, [])
 
-    useEffect(() => {
-        const user = localStorage.getItem("loggedInUser")
-        if (user) {
-            props.setLoginUser(JSON.parse(user))
-            console.log("Set user")
-        }
-    }, [])
 
     // Match id to profile
     const profileMatch = useRouteMatch("/profile/:id")
