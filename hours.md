@@ -12,4 +12,5 @@
 | | 2 | Users are able to follow users.|
 | 15.9.20| 2 | Started working on the frontend, added login & likes and some misc backend stuff|
 | 16.9.20| 1 | Added ability to register and some misc thinking about the whole project|
-| Total   | 15.5  | | 
+|  3 | Added basic profiles, started working on following on the front- and backend |
+| Total   | 18.5  | | 
