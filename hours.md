@@ -13,4 +13,5 @@
 | 15.9.20| 2 | Started working on the frontend, added login & likes and some misc backend stuff|
 | 16.9.20| 1 | Added ability to register and some misc thinking about the whole project|
 |  3 | Added basic profiles, started working on following on the front- and backend |
-| Total   | 18.5  | | 
+| 20.9.20| 2 | Some major design changes going on with the project, work in progress|
+| Total   | 20.5  | | 
