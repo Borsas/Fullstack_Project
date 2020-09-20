@@ -5,8 +5,9 @@ import Oinks from "../Oinks/Oinks"
 import { followUser } from "../../reducers/userReducer"
 
 const Profile = (props) => {
-    const profile = props.profile
+    const profile = props.id ? props.user.find(u => u.id === props.id) : null
 
+    console.log(profile)
     if (!profile) {
         return (
             <div>
@@ -18,8 +19,8 @@ const Profile = (props) => {
 
     const handleFollow = (e) => {
         e.preventDefault()
-        if (props.login){
-            console.log(profile.id)
+        if (profile.username !== props.login.username){
+            props.followUser(profile.id)
         }
     }
 
@@ -55,7 +56,8 @@ const dispatch = {
 const props = (state) => {
     return {
         oinks: state.oinks,
-        login: state.oinks
+        login: state.login,
+        user: state.user
     }
 }
 

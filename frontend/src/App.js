@@ -3,7 +3,7 @@ import { Switch, Route, useRouteMatch } from "react-router-dom"
 import { connect } from "react-redux"
 
 import Header from "./components/Header/Header"
-import TweetPage from "./components/Oinks/OinkPage"
+import OinkPage from "./components/Oinks/OinkPage"
 import Login from "./components/Login"
 import Register from "./components/Register"
 import Profile from "./components/Profile/Profile"
@@ -31,7 +31,7 @@ function App(props) {
 
     // Match id to profile
     const profileMatch = useRouteMatch("/profile/:id")
-    const profile = profileMatch ? props.user.find(u => u.id === profileMatch.params.id) : null
+    const profileId = profileMatch ? profileMatch.params.id : null
 
     return (
         <div>
@@ -44,12 +44,10 @@ function App(props) {
                     <Register/>
                 </Route>
                 <Route path="/profile/:id">
-                    <Profile profile={profile}/>
+                    <Profile id={profileId}/>
                 </Route>
                 <Route path="/">
-                    <div>
-                        <TweetPage/>
-                    </div>
+                    <OinkPage/>
                 </Route>
             </Switch>
         </div>

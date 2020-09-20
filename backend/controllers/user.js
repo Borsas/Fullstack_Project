@@ -51,9 +51,8 @@ userRouter.post("/follow/:id", async (req, res) => {
             error: "Invalid user id"
         })
     } 
-    const user = await User.findOne({where: {username: userToken.username}})
 
-    if (user.id === userToFollowId) {
+    if (userToken.id === userToFollowId) {
         return res.status(401).json({
             error: "You can't follow yourself"
         })
@@ -61,25 +60,25 @@ userRouter.post("/follow/:id", async (req, res) => {
 
     const isUserAlreadyFollowing = await Follower.findOne({
         where: {
-            following_id: user.id,
+            following_id: userToken.id,
             follower_id: userToFollowId
         }
     })
     if (isUserAlreadyFollowing) {
         await Follower.destroy({
             where: {
-                following_id: user.id,
+                following_id: userToken.id,
                 follower_id: userToFollowId
             }
         })
     } else {
         await Follower.create({
-            following_id: user.id,
+            following_id: userToken.id,
             follower_id: userToFollowId
         })
     }
     res.status(200).json({
-        following_id: user.id,
+        following_id: userToken.id,
         follower_id: userToFollowId
     })
 })
