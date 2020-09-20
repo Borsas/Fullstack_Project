@@ -7,7 +7,6 @@ import { followUser } from "../../reducers/userReducer"
 const Profile = (props) => {
     const profile = props.id ? props.user.find(u => u.id === props.id) : null
 
-    console.log(profile)
     if (!profile) {
         return (
             <div>

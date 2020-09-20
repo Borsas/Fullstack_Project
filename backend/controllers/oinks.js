@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken")
+const { Op } = require("sequelize")
 
 const Oink = require("../database/models/Oink")
 const User = require("../database/models/User")
+const Follower = require("../database/models/Follower")
 const LikedOinks = require("../database/models/LikedOinks")
 
 const oinkRouter = require("express").Router()
@@ -60,12 +62,6 @@ oinkRouter.post("/like/:id", async (req, res) => {
         })
     }
 
-    const loggedInUser = await User.findOne({
-        where: {
-            username: userToken.username
-        }
-    })
-
     const oink = await Oink.findByPk(OinkId)
     if (!oink){
         return res.status(401).json({
@@ -75,7 +71,7 @@ oinkRouter.post("/like/:id", async (req, res) => {
     
     const findIfLiked = await LikedOinks.findOne({
         where: {
-            userId: loggedInUser.id,
+            userId: userToken.id,
             oinkId: OinkId
         }
     })
@@ -83,14 +79,14 @@ oinkRouter.post("/like/:id", async (req, res) => {
     if(!findIfLiked) {
         await oink.increment("likes", {by: 1})
         await LikedOinks.create({
-            userId: loggedInUser.id,
+            userId: userToken.id,
             oinkId: OinkId
         })
     } else {
         await oink.decrement("likes", {by: 1})
         await LikedOinks.destroy({
             where: {
-                userId: loggedInUser.id,
+                userId: userToken.id,
                 oinkId: OinkId
             }
         })
@@ -100,13 +96,19 @@ oinkRouter.post("/like/:id", async (req, res) => {
 
 
 oinkRouter.get("/", async (req, res) => {
+    //const userToken = jwt.verify(req.token, process.env.JWT_SECRET_HASH)
+    
     const oinks = await Oink.findAll({
         attributes: ["id", "content", "likes", "date"],
-        include: {
-            model: User,
-            attributes:["name", "username", "id"]
-        }
+        include: [
+            {model: Follower, User: []},
+        ],
+        where: {
+            '$follow.following_id$': "dc052fa4-eaf7-4ac1-8e80-44a0144b3f89",
+                
+        },
     })
+    console.log(oinks)
     res.json(oinks)
 })
 

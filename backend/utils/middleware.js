@@ -12,6 +12,7 @@ const handleErrors = (error, req, resp, next) => {
     if (error.name === "JsonWebTokenError"){
         return resp.status(401).send({ error: "Invalid or missing token" })
     } else if (error.name === "SequelizeDatabaseError") {
+        console.log(error)
         return resp.status(401).send({error: "Invalid query"})
     } else if (error.name === "SequelizeConnectionRefusedError") {
         return resp.status(500).send({error: "Could not connect to database"})
