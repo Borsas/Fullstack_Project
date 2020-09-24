@@ -15,7 +15,7 @@ Also make sure database is stable.
 - [x] Login
 - [x] Oinks
 - [ ] Main page
-- [ ] User profiles
+- [x] User profiles
 - [x] Routes (React-router)
 - [ ] Ability to follow users
 - [ ] Make the page pretty (lmao)
@@ -28,7 +28,7 @@ Also make sure database is stable.
 - [ ] Editing profile
 - [x] Following users
 - [x] Database
-- [ ] Show oinks from people only you follow
+- [x] Show oinks from people only you follow
 
 ### MISC 
 - [x] Name for project // *Oinker*
