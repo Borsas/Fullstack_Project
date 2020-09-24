@@ -12,7 +12,10 @@ const getLoginToken = () => {
 }
 
 const getAll = async () => {
-    const res = await axios.get(baseUrl)
+    const config = {
+        headers: { Authorization: loginToken }
+    }
+    const res = await axios.post(`${baseUrl}/get`, null, config)
     return res.data
 }
 

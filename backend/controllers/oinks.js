@@ -95,20 +95,31 @@ oinkRouter.post("/like/:id", async (req, res) => {
 })
 
 
-oinkRouter.get("/", async (req, res) => {
-    //const userToken = jwt.verify(req.token, process.env.JWT_SECRET_HASH)
-    
+oinkRouter.post("/get", async (req, res) => {
+    let config = {}
+    if (req.token) {
+        const userToken = jwt.verify(req.token, process.env.JWT_SECRET_HASH)
+        // Add the where clause only if the user has a req token,
+        // pretty bad right now, but its just temporary
+        config = {
+            where: {
+                "$user.follower.follow.following_id$": userToken.id
+            },
+        }
+    }
+
     const oinks = await Oink.findAll({
-        attributes: ["id", "content", "likes", "date"],
-        include: [
-            {model: Follower, User: []},
-        ],
-        where: {
-            '$follow.following_id$': "dc052fa4-eaf7-4ac1-8e80-44a0144b3f89",
-                
+        attributes: ["id", "content", "date", "likes"],
+        ...config,
+        include: {
+            model: User, attributes: ["id", "username", "name"],
+            include: {
+                model: User, as: "follower", attributes:["id", "name", "username"],
+                attributes: []
+            }
         },
+        
     })
-    console.log(oinks)
     res.json(oinks)
 })
 
