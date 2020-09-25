@@ -103,7 +103,10 @@ oinkRouter.post("/get", async (req, res) => {
         // pretty bad right now, but its just temporary
         config = {
             where: {
-                "$user.follower.follow.following_id$": userToken.id
+                [Op.or]: [
+                    {"$user.id$": userToken.id},
+                    {"$user.follower.follow.following_id$": userToken.id}
+                ]
             },
         }
     }

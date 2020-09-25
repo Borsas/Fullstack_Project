@@ -30,8 +30,8 @@ function App(props) {
 
 
     // Match id to profile
-    const profileMatch = useRouteMatch("/profile/:id")
-    const profileId = profileMatch ? profileMatch.params.id : null
+    const profileMatch = useRouteMatch("/profile/:username")
+    const profileUsername = profileMatch ? profileMatch.params.username : null
 
     return (
         <div>
@@ -43,8 +43,8 @@ function App(props) {
                 <Route path="/register">
                     <Register/>
                 </Route>
-                <Route path="/profile/:id">
-                    <Profile id={profileId}/>
+                <Route path="/profile/:username">
+                    <Profile username={profileUsername}/>
                 </Route>
                 <Route path="/">
                     <OinkPage/>

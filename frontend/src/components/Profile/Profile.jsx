@@ -5,7 +5,7 @@ import Oinks from "../Oinks/Oinks"
 import { followUser } from "../../reducers/userReducer"
 
 const Profile = (props) => {
-    const profile = props.id ? props.user.find(u => u.id === props.id) : null
+    const profile = props.username ? props.user.find(u => u.username === props.username) : null
 
     if (!profile) {
         return (

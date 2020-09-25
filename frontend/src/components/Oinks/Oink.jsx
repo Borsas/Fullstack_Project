@@ -6,7 +6,7 @@ import { likeOink } from "../../reducers/oinksReducer"
 
 const Oink = (props) => {
     const parsedDate = new Date(props.date * 1000).toLocaleString('en-GB', { hour12:false})
-    const linkToProfile = `/profile/${props.userId}`
+    const linkToProfile = `/profile/${props.user}`
     const style = {
         border: "solid", 
         borderWidth: "1px", 
