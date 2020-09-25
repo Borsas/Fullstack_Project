@@ -20,20 +20,23 @@ export const followUser = (id) => {
     }
 }
 
-// TODO Following broken
 const reducer = (state = [], action) => {
     switch(action.type){
         case "GET_USER":
             return action.data
         case "FOLLOW_USER":
-            const user = state.find(u => u.id === action.data.follower_id)
-            if (!user.follower.includes(action.data.following_id)) {
-                user.follower.push(action.data.following_id)
-                return state.map(u => u.id !== user.id ? u : user)
+            const userWhoFollowed = action.data.userWhoFollowed
+            const followedUser = action.data.followedUser
+            const user = state.find(u => u.id === followedUser.id)
+
+            if (action.data.followed) {
+                user.follower.push(userWhoFollowed)
             } else {
-                user.follower.filter(u => u.id === action.data.following_id)
-                return state.map(u => u.id !== user.id ? u : user)
+                const followers = user.follower.filter(i => i.id !== userWhoFollowed.id)
+                user.follower = followers
             }
+            return state.map(u => u.id !== u ? u : user )
+
         default:
             return state
     }

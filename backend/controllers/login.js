@@ -25,6 +25,7 @@ loginRouter.post("/", async (req, res) => {
 
     const userToken = {
         username: user.username,
+        name: user.name,
         id: user.id
     }
 
@@ -68,6 +69,7 @@ loginRouter.post("/register", async (req, res) => {
 
     const userToken = {
         username: user.username,
+        name: user.name,
         id: user.id
     }
     const token = jwt.sign(userToken, process.env.JWT_SECRET_HASH)

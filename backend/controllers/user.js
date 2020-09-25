@@ -58,29 +58,43 @@ userRouter.post("/follow/:id", async (req, res) => {
         })
     }
 
+    const settings = {
+        following_id: userToken.id,
+        follower_id: userToFollowId
+    }
+    
+    const user = {
+        id: userToken.id,
+        name: userToken.name,
+        username: userToken.username
+    }
+    console.log(user)
+
     const isUserAlreadyFollowing = await Follower.findOne({
         where: {
-            following_id: userToken.id,
-            follower_id: userToFollowId
+            ...settings
         }
     })
+    //TODO Make this a lot more better
     if (isUserAlreadyFollowing) {
         await Follower.destroy({
             where: {
-                following_id: userToken.id,
-                follower_id: userToFollowId
+                ...settings
             }
         })
+        res.status(200).json({
+            userWhoFollowed: user,
+            followedUser: foundFollowUser,
+            followed: false
+        })
     } else {
-        await Follower.create({
-            following_id: userToken.id,
-            follower_id: userToFollowId
+        await Follower.create(settings)
+        res.status(200).json({
+            userWhoFollowed: user,
+            followedUser: foundFollowUser,
+            followed: true
         })
     }
-    res.status(200).json({
-        following_id: userToken.id,
-        follower_id: userToFollowId
-    })
 })
 
 module.exports = userRouter

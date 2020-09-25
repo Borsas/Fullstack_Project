@@ -41,7 +41,9 @@ const Profile = (props) => {
                 {profile.follower.length} Followers
             </div>
             <div>
+                {props.login ? 
                 <button onClick={handleFollow}>Follow</button>
+                : null}
             </div>
             <Oinks oinks={oinks}/>
         </div>
